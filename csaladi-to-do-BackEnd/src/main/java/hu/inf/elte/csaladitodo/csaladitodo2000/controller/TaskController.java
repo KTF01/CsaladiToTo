@@ -24,9 +24,6 @@ import hu.inf.elte.csaladitodo.csaladitodo2000.service.UserService;
 import hu.inf.elte.csaladitodo.csaladitodo2000.repository.TaskRepository;
 import hu.inf.elte.csaladitodo.csaladitodo2000.repository.UserRepository;
 
-//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
-
 @RestController
 @RequestMapping("/api/tasks")
 class TaskController {
