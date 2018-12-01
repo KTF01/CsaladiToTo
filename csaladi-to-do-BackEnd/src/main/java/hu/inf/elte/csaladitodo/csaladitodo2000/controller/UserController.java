@@ -82,35 +82,27 @@ class UserController {
             return ResponseEntity.notFound().build();
         }
     }
-    /*
+
     // id alapján modositas
     @CrossOrigin
-    @PutMapping("/{taskId}")
-    public ResponseEntity<Task> update(@RequestBody Task task, @PathVariable("taskId") int id) {
-        Optional<Task> optionalUser = userService.findTaskById(id);
+    @PutMapping("/{userId}")
+    public ResponseEntity<User> update(@RequestBody User user, @PathVariable("userId") int id) {
+        Optional<User> optionalUser = userService.findUserById(id);
 
         if (optionalUser.isPresent()) {
             user.setId(id);
-            return ResponseEntity.ok(optionalUser.save(task));
+            return ResponseEntity.ok(userService.save(user));
         }
         else {
             return ResponseEntity.notFound().build();
         }
     }
 
-    /*
-    // id alapján modositas
-    @PutMapping("/{id}")
-    public ResponseEntity<User> put(@PathVariable Integer id,  @RequestBody User user){
-        for(User u : userService.findAll()){
-            if( u.getId() == id){
-                user.setId(id);
-                return ResponseEntity.ok(userRepository.save(user));
-            }
-        }
-        return ResponseEntity.notFound().build();
-
+    // felvetel
+    @CrossOrigin    
+    @PostMapping("")
+    public ResponseEntity<User> add(@RequestBody User user) {
+        return ResponseEntity.ok(userService.save(user));
     }
-*/
 
 }

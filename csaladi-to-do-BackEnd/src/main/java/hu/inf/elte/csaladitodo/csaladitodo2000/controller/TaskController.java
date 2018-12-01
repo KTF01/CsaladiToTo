@@ -34,12 +34,14 @@ class TaskController {
     @Autowired
     private TaskService taskService;
 
+    // teljes feladat listazas
     @CrossOrigin
     @GetMapping("/all")
     public ResponseEntity<List<Task>> all() {
         return ResponseEntity.ok(taskService.findAll());
     }
 
+    // id alapjan egy feladat kiszurese
     @CrossOrigin
     @GetMapping("/get/{id}")
     public ResponseEntity<Task> findTaskById(@PathVariable("id") int id){
@@ -83,13 +85,14 @@ class TaskController {
         }
     }
 
+    // felvetel
     @CrossOrigin    
     @PostMapping("")
     public ResponseEntity<Task> add(@RequestBody Task task) {
         return ResponseEntity.ok(taskService.save(task));
     }
     
-
+    // modositas id alapjan
     @CrossOrigin
     @PutMapping("/{taskId}")
     public ResponseEntity<Task> update(@RequestBody Task task, @PathVariable("taskId") int id) {
