@@ -96,9 +96,9 @@ Feladat: Családi TODO
 
 3. Mindemellett lehetőséget nyújt keresésre, és a fent említett "tagek" segítségével, különböző szűréseket, áttekintéseket átböngészni. A Kulcs az egyszerűságben rejlik.
 
-4.A futtatáshoz ajánlott hardver-, szoftver konfiguráció Böngészőben futó alkalmazás nincs különösebb hardver igénye. Ajánlott szoftver - Google Chrome, Firefox, Opera, Safari
+4. A futtatáshoz ajánlott hardver-, szoftver konfiguráció Böngészőben futó alkalmazás nincs különösebb hardver igénye. Ajánlott szoftver - Google Chrome, Firefox, Opera, Safari
 
-5.Telepítés lépései: hogyan kerül a Githubról a célgépre a program git clone github link. Telepítés meglévő fileok elhejetése majd konzolban npm -install parancs-al lefut a telepítés. spring-boot:run-el és ng serve -el pedig elindul a program.
+5. Telepítés lépései: hogyan kerül a Githubról a célgépre a program git clone github link. Telepítés meglévő fileok elhejetése majd konzolban npm -install parancs-al lefut a telepítés. spring-boot:run-el és ng serve -el pedig elindul a program.
 
 ## Egy funkció leírása
 
