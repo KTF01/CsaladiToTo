@@ -70,16 +70,20 @@ Feladat: Családi TODO
  5. Végpontok: Fejlesztés folyamatban, lehet válzotás,bővülés!
  	
 	* GET ('api/users/all') 
-	* GET ('api/users/lead/{taskname}') 
-	* GET ('api/users/work/{taskname}') 
+	* GET ('api/users/get/{id}') 
+	* GET ('api/users/lead/{id}')
+	* GET ('api/users/work/{id}') 
 	* DELETE ('api/users/delete/{id}')
-	* PUT ('api/users/{id}')
-	* POST ('api/users/register')
+	* PUT ('api/{userid}')
+	* POST ('api/""') -> register
+	* POST ('api/sign-in')
 	* GET ('api/tasks/all') 
-	* GET ('api/tasks/lead/{name}') 
-	* GET ('api/tasks/work/{workername}')
+	* GET ('api/tasks/get/{id}') 
+	* GET ('api/tasks/lead/{id}')
+	* GET ('api/tasks/work/{workerid}')
 	* DELETE ('api/tasks/delete/{id}')
-	* PUT ('api/tasks/{id}')
+	* POST('api/tasks/""') 
+	* PUT ('api/{taskid}')
 
 6. Architechtúra terv:
 	![alt text](http://www.kepfeltoltes.eu/images/2018/10/602szekvencia_terv.png)
