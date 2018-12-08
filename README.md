@@ -47,7 +47,7 @@ Feladat: Családi TODO
 	- Comment -> A különboző kiírt feladatokhoz hozzászólást lehet "fűzni" írni, így a jobb kommunikációt fennttartva.
 	- Tags -> Végül a tagek amik segítségével a különböző feladatokat extra információval eléréssel lehet felruházni.
 	
- 	 ![alt text](http://www.kepfeltoltes.eu/images/2018/10/311UML.png)
+ 	 ![alt text](https://i.imgur.com/0pO7It5.png)
 	
 2. Leírása az UML diagrammnak:
 	- A User (id- azonosító, name - neve, status - szülő/gyerek, tasksTolead - feladatok amiket kiírt, tasksToDo - feladatok amiket csinál)
