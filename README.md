@@ -47,11 +47,11 @@ Feladat: Családi TODO
 	- Comment -> A különboző kiírt feladatokhoz hozzászólást lehet "fűzni" írni, így a jobb kommunikációt fennttartva.
 	- Tags -> Végül a tagek amik segítségével a különböző feladatokat extra információval eléréssel lehet felruházni.
 	
- 	 ![alt text](http://www.kepfeltoltes.eu/images/2018/10/311UML.png)
+ 	 ![alt text](https://i.imgur.com/0pO7It5.png)
 	
 2. Leírása az UML diagrammnak:
-	- A User (id- azonosító, name - neve, status - szülő/gyerek, tasksTolead - feladatok amiket kiírt, tasksToDo - feladatok amiket csinál)
-	- A Task (id - azonosító, taskname - a feladat neve, lead - aki vezeti a feladatot, workers - aki/akiknek végre kell hajtania, comments - hozzáfüzések az adott feladathoz)
+	- A User (id- azonosító, username - neve,jelszó - jelszó, role - szülő/gyerek, tasksTolead - feladatok amiket kiírt, tasksToDo - feladatok amiket csinál)
+	- A Task (id - azonosító, taskname - a feladat neve, text - feladat leírása, lead - aki vezeti a feladatot, workers - aki/akiknek végre kell hajtania, comments - hozzáfüzések az adott feladathoz)
 	- A Comment (in - azonosító, author - aki írta a kommentet, text - a komment szövege, task - amelyik feladathoz írta, tags - exra információk)
 	- Tags (id - azonosító, text - szövege, comments - amely kommenteknél használják)
 
@@ -59,7 +59,7 @@ Feladat: Családi TODO
  	- Egy User több feladatot is "Vezethet/kiírhat" -> egy sok-kapcsolat
 	- Egy User több feladatot is végezhet egyszerre -> így ezen két tábla között van egy sok-sok kapcsolat is.
 	- Egy Task (feladat)- hoz több komment is érkezhet -> a Task és a Comment között így egy-sok kapcsolat van.
-	- Egy Comment több taget is kaphat -> a Comment és a Tags között is van egy sok-sok kapcsolat.
+	- Egy Task több taget is kaphat -> a Task és a Tags között is van egy sok-sok kapcsolat. Amivel a keresést, csoportosítást könyítjük meg.
 	- (Az adatbázisunk rendelkezik kapcsolat táblákkal is a megfelelő felvételhez.)
 	
  4. Könyvtár szerkezet:
@@ -70,20 +70,37 @@ Feladat: Családi TODO
  5. Végpontok: Fejlesztés folyamatban, lehet válzotás,bővülés!
  	
 	* GET ('api/users/all') 
-	* GET ('api/users/lead/{taskname}') 
-	* GET ('api/users/work/{taskname}') 
+	* GET ('api/users/get/{id}') 
+	* GET ('api/users/lead/{id}')
+	* GET ('api/users/work/{id}') 
 	* DELETE ('api/users/delete/{id}')
-	* PUT ('api/users/{id}')
-	* POST ('api/users/register')
+	* PUT ('api/{userid}')
+	* POST ('api/""') -> register
+	* POST ('api/sign-in')
 	* GET ('api/tasks/all') 
-	* GET ('api/tasks/lead/{name}') 
-	* GET ('api/tasks/work/{workername}')
+	* GET ('api/tasks/get/{id}') 
+	* GET ('api/tasks/lead/{id}')
+	* GET ('api/tasks/work/{workerid}')
 	* DELETE ('api/tasks/delete/{id}')
-	* PUT ('api/tasks/{id}')
+	* POST('api/tasks/""') 
+	* PUT ('api/{taskid}')
 
 6. Architechtúra terv:
 	![alt text](http://www.kepfeltoltes.eu/images/2018/10/602szekvencia_terv.png)
 
-		
- 	
+## Felhasználói Dolumentáció
+
+1. Az alkalmazás egy család mindennapi tevékenységét és azon managelését teszi lehetővé a lehető legmodernebb módom, ahol az interneten nyomon lehet követni az adott feladatainak, kiíírhatunk végrehajthatunk eseményeket és mintezt jelezhetjük, nyomon követhetjük.
+
+2. Az alkalmazásban a családtagok a "főoldalon" láthatják a feladatokat, amiket a családban el kell végezni, lehetőség van ezen belül más menüpont segítségével családtagok által kiírt végrehajtásra várt feladatokat is megtekinteni.
+
+3. Mindemellett lehetőséget nyújt keresésre, és a fent említett "tagek" segítségével, különböző szűréseket, áttekintéseket átböngészni. A Kulcs az egyszerűságben rejlik.
+
+4. A futtatáshoz ajánlott hardver-, szoftver konfiguráció Böngészőben futó alkalmazás nincs különösebb hardver igénye. Ajánlott szoftver - Google Chrome, Firefox, Opera, Safari
+
+5. Telepítés lépései: hogyan kerül a Githubról a célgépre a program git clone github link. Telepítés meglévő fileok elhejetése majd konzolban npm -install parancs-al lefut a telepítés. spring-boot:run-el és ng serve -el pedig elindul a program.
+
+## Egy funkció leírása
+
+1. A bejelentkezést tekintve, az alkalmazásunk jobb felső sarkában található bejelentkezés lehetőséggel a megfelelő felületre kerülvén, kitölthetjük a mezőket (felhasználónév,jelszó) ami megfeleő kitöltés esetén beléptet minket, és köszönt ugyanott a jobb felső sarokban. Ellenkező esetben kiíírja a hibánkat, sőt a hibáás mezőt is kielelvén jelzi, mit felejtettünk el/ vagy töltöttünk ki hibásan.
                          
