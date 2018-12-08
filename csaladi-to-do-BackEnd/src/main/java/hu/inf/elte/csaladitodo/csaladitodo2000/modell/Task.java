@@ -33,6 +33,9 @@ public class Task {
     @Column
     private String taskname;
 
+    @Column
+    private String text;
+
     @ManyToOne
     @JoinColumn
     @JsonIgnore
