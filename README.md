@@ -50,8 +50,8 @@ Feladat: Családi TODO
  	 ![alt text](https://i.imgur.com/0pO7It5.png)
 	
 2. Leírása az UML diagrammnak:
-	- A User (id- azonosító, name - neve, status - szülő/gyerek, tasksTolead - feladatok amiket kiírt, tasksToDo - feladatok amiket csinál)
-	- A Task (id - azonosító, taskname - a feladat neve, lead - aki vezeti a feladatot, workers - aki/akiknek végre kell hajtania, comments - hozzáfüzések az adott feladathoz)
+	- A User (id- azonosító, username - neve,jelszó - jelszó, role - szülő/gyerek, tasksTolead - feladatok amiket kiírt, tasksToDo - feladatok amiket csinál)
+	- A Task (id - azonosító, taskname - a feladat neve, text - feladat leírása, lead - aki vezeti a feladatot, workers - aki/akiknek végre kell hajtania, comments - hozzáfüzések az adott feladathoz)
 	- A Comment (in - azonosító, author - aki írta a kommentet, text - a komment szövege, task - amelyik feladathoz írta, tags - exra információk)
 	- Tags (id - azonosító, text - szövege, comments - amely kommenteknél használják)
 
@@ -59,7 +59,7 @@ Feladat: Családi TODO
  	- Egy User több feladatot is "Vezethet/kiírhat" -> egy sok-kapcsolat
 	- Egy User több feladatot is végezhet egyszerre -> így ezen két tábla között van egy sok-sok kapcsolat is.
 	- Egy Task (feladat)- hoz több komment is érkezhet -> a Task és a Comment között így egy-sok kapcsolat van.
-	- Egy Comment több taget is kaphat -> a Comment és a Tags között is van egy sok-sok kapcsolat.
+	- Egy Task több taget is kaphat -> a Task és a Tags között is van egy sok-sok kapcsolat. Amivel a keresést, csoportosítást könyítjük meg.
 	- (Az adatbázisunk rendelkezik kapcsolat táblákkal is a megfelelő felvételhez.)
 	
  4. Könyvtár szerkezet:
