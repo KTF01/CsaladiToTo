@@ -24,12 +24,16 @@ import hu.inf.elte.csaladitodo.csaladitodo2000.service.UserService;
 import hu.inf.elte.csaladitodo.csaladitodo2000.repository.TaskRepository;
 import hu.inf.elte.csaladitodo.csaladitodo2000.repository.UserRepository;
 
+import hu.inf.elte.csaladitodo.csaladitodo2000.AuthenticatedUser;;
 @RestController
 @RequestMapping("/api/tasks")
 class TaskController {
 
     @Autowired
     private TaskService taskService;
+
+    @Autowired 
+    private AuthenticatedUser authenticatedUser;
 
     // teljes feladat listazas
     @CrossOrigin
@@ -85,7 +89,11 @@ class TaskController {
     // felvetel
     @CrossOrigin    
     @PostMapping("")
-    public ResponseEntity<Task> add(@RequestBody Task task) {
+    public ResponseEntity<Task> save(@RequestBody Task task) {
+        task.setLead(authenticatedUser.getUser());
+        task.setWorkers(new ArrayList());
+        task.setComments(new ArrayList());
+        task.setTags(new ArrayList());
         return ResponseEntity.ok(taskService.save(task));
     }
     
@@ -93,11 +101,21 @@ class TaskController {
     @CrossOrigin
     @PutMapping("/{taskId}")
     public ResponseEntity<Task> update(@RequestBody Task task, @PathVariable("taskId") int id) {
-        Optional<Task> optionalTask = taskService.findTaskById(id);
+        Optional<Task> optionalOriginalTask = taskService.findTaskById(id);
 
-        if (optionalTask.isPresent()) {
-            task.setId(id);
-            return ResponseEntity.ok(taskService.save(task));
+        if (optionalOriginalTask.isPresent()) {
+            Task originalTask = optionalOriginalTask.get();
+
+            if (authenticatedUser.getUser().getUsername().equals(originalTask.getLead().getUsername())) {
+                task.setId(id);
+                task.setComments(originalTask.getComments());
+                task.setWorkers(originalTask.getWorkers());
+                task.setTags(originalTask.getTags());
+                return ResponseEntity.ok(taskService.save(task));
+            }
+            else {
+                return ResponseEntity.status(401).build();
+            }
         }
         else {
             return ResponseEntity.notFound().build();

@@ -15,6 +15,7 @@ import javax.persistence.OneToMany;
 import javax.persistence.CascadeType;
 import javax.persistence.Column;
 import com.fasterxml.jackson.annotation.JsonIgnore;
+import javax.persistence.JoinTable;
 
 import java.util.List;
 
@@ -26,7 +27,7 @@ import java.util.List;
 public class Task {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column
@@ -37,11 +38,15 @@ public class Task {
     @JsonIgnore
     private User lead;
 
-    @ManyToMany(mappedBy = "tasksToDo",cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @ManyToMany(mappedBy = "tasksToDo")
     @JsonIgnore
     private List<User> workers;
 
     @OneToMany(mappedBy = "task", cascade = CascadeType.ALL)
     private List<Comment> comments;
+
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
+    @JoinTable
+    private List<Tag> tags;
 
 }

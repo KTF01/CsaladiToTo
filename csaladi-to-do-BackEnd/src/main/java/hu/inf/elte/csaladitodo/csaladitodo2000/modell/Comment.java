@@ -1,6 +1,5 @@
 package hu.inf.elte.csaladitodo.csaladitodo2000.modell;
 
-import hu.inf.elte.csaladitodo.csaladitodo2000.modell.Tag;
 import hu.inf.elte.csaladitodo.csaladitodo2000.modell.Task;
 import lombok.Data;
 import lombok.AllArgsConstructor;
@@ -38,9 +37,5 @@ public class Comment {
     @JoinColumn
     @JsonIgnore
     private Task task;
-
-    @ManyToMany
-    @JoinTable
-    private List<Tag> tags;
 
 }

@@ -13,29 +13,42 @@ import java.util.List;
 import lombok.AllArgsConstructor;
 import lombok.Data;
 import lombok.NoArgsConstructor;
+import javax.persistence.Enumerated;
+import javax.persistence.EnumType;
+import javax.persistence.CascadeType;
 
 
+@Entity
 @Data
 @AllArgsConstructor
 @NoArgsConstructor
-@Entity
-@Table(name = "users")
 public class User {
 
     @Id
-    @GeneratedValue(strategy = GenerationType.SEQUENCE)
+    @GeneratedValue(strategy = GenerationType.IDENTITY)
     private int id;
 
     @Column
-    private String name;
+    private String username;
 
     @Column
-    private String status;
+    private String password;
 
-    @OneToMany(mappedBy = "lead")
+    @Column
+    private String firstName;
+
+    @Column
+    @Enumerated(EnumType.STRING)
+    private Role role;
+    
+    public enum Role {
+        ROLE_USER, ROLE_ADMIN
+    }
+
+    @OneToMany(mappedBy = "lead", cascade = CascadeType.ALL)
     private List<Task> tasksTolead;
 
-    @ManyToMany
+    @ManyToMany(cascade = {CascadeType.PERSIST, CascadeType.MERGE})
     @JoinTable
     private List<Task> tasksToDo;
 

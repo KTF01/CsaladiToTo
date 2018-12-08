@@ -17,14 +17,16 @@ import org.springframework.beans.factory.annotation.Autowired;
 import org.springframework.http.ResponseEntity;
 import org.springframework.web.bind.annotation.RequestBody;
 
+
 import hu.inf.elte.csaladitodo.csaladitodo2000.modell.User;
+import hu.inf.elte.csaladitodo.csaladitodo2000.modell.User.Role;
 import hu.inf.elte.csaladitodo.csaladitodo2000.modell.Task;
 import hu.inf.elte.csaladitodo.csaladitodo2000.service.TaskService;
 import hu.inf.elte.csaladitodo.csaladitodo2000.service.UserService;
 import hu.inf.elte.csaladitodo.csaladitodo2000.repository.UserRepository;
+import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
 
-//import org.springframework.security.crypto.bcrypt.BCryptPasswordEncoder;
-
+import hu.inf.elte.csaladitodo.csaladitodo2000.AuthenticatedUser;;
 
 @RestController
 @RequestMapping("/api/users")
@@ -32,6 +34,15 @@ class UserController {
 
     @Autowired
     private UserService userService;
+
+    @Autowired
+    private UserRepository userRepository;
+
+    @Autowired
+    private BCryptPasswordEncoder passwordEncoder;
+
+    @Autowired 
+    private AuthenticatedUser authenticatedUser;
 
     // teljes user listazas
     @CrossOrigin
@@ -87,11 +98,19 @@ class UserController {
     @CrossOrigin
     @PutMapping("/{userId}")
     public ResponseEntity<User> update(@RequestBody User user, @PathVariable("userId") int id) {
-        Optional<User> optionalUser = userService.findUserById(id);
+        Optional<User> optionalOptionalUser = userService.findUserById(id);
 
-        if (optionalUser.isPresent()) {
-            user.setId(id);
-            return ResponseEntity.ok(userService.save(user));
+        if (optionalOptionalUser.isPresent()) {
+            User originalUser = optionalOptionalUser.get();
+
+            if (authenticatedUser.getUser().getRole().equals(Role.ROLE_ADMIN)) {
+                user.setId(id);
+                user.setTasksTolead(originalUser.getTasksTolead());
+                return ResponseEntity.ok(userService.save(user));
+            }
+            else {
+                return ResponseEntity.status(401).build();
+            }
         }
         else {
             return ResponseEntity.notFound().build();
@@ -99,10 +118,31 @@ class UserController {
     }
 
     // felvetel
-    @CrossOrigin    
+    @CrossOrigin
     @PostMapping("")
-    public ResponseEntity<User> add(@RequestBody User user) {
-        return ResponseEntity.ok(userService.save(user));
+    public ResponseEntity<User> register(@RequestBody User user) {
+        Optional<User> optionalUser = userRepository.findByUsername(user.getUsername());
+
+        if (optionalUser.isPresent()) {
+            return ResponseEntity.badRequest().build();
+        }
+
+        user.setPassword(passwordEncoder.encode(user.getPassword()));
+        user.setRole(User.Role.ROLE_USER);
+        user.setTasksTolead(new ArrayList());
+        user.setTasksToDo(new ArrayList());
+
+        return ResponseEntity.ok(userRepository.save(user));
     }
+
+    // bejelentkezes
+    @CrossOrigin
+    @PostMapping("/sign-in")
+    public ResponseEntity<User> login(@RequestBody User user) {
+        User user2 = userRepository.findByUsername(user.getUsername()).get();
+        return ResponseEntity.ok(user2);
+    }
+
+
 
 }

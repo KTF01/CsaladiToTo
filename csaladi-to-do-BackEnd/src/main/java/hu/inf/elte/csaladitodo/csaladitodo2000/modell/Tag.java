@@ -15,7 +15,7 @@ import javax.persistence.ManyToMany;
 import javax.persistence.JoinColumn;
 import com.fasterxml.jackson.annotation.JsonIgnore;
 
-import hu.inf.elte.csaladitodo.csaladitodo2000.modell.Comment;
+import hu.inf.elte.csaladitodo.csaladitodo2000.modell.Task;
 
 @Data
 @AllArgsConstructor
@@ -33,5 +33,5 @@ public class Tag {
 
     @ManyToMany(mappedBy = "tags")
     @JsonIgnore
-    private List<Comment> comments;
+    private List<Task> tasks;
 }
