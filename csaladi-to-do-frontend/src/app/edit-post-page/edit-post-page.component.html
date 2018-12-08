@@ -1,0 +1,37 @@
+<form #form="ngForm" (ngSubmit)="handleSubmit(form)">
+  <div class="form-group">
+    <label>Title</label>
+    <input
+      type="text"
+      class="form-control"
+      required
+      name="title"
+      [(ngModel)]="post.title"
+      #titleControl="ngModel"
+      [ngClass]="{ 'is-invalid': titleControl.touched && titleControl.invalid }">
+  </div>
+  <div class="form-group">
+    <label>Text</label>
+    <textarea
+      class="form-control"
+      rows="5"
+      required
+      name="text"
+      [(ngModel)]="post.text"
+      #textControl="ngModel"
+      [ngClass]="{ 'is-invalid': textControl.touched && textControl.invalid }"></textarea>
+</div>
+  <div class="form-group">
+    <label>Tags</label>
+    <input
+      type="text"
+      class="form-control"
+      pattern="^[a-z]+(, [a-z]+)*$"
+      name="tags"
+      [(ngModel)]="post.tags"
+      #tagsControl="ngModel"
+      [ngClass]="{ 'is-invalid': tagsControl.touched && tagsControl.invalid }">
+  </div>
+  <button type="submit" class="btn btn-primary" [disabled]="form.invalid">Save</button>
+  <button type="button" class="btn btn-link">Cancel</button>
+</form>

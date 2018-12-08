@@ -1,0 +1,18 @@
+<div class="card" *ngFor="let task of posts | async">
+  <div class="card-body">
+    <h5 class="card-title">{{ task.id }}</h5>
+    <div>
+      <b>{{ task.taskname }}</b>
+    </div>
+    <div>
+      {{ task.text }}
+    </div>
+
+    <!--<p class="card-text">{{ tas.text }}</p>
+    <div class="tag-container">
+      <span class="badge badge-secondary" *ngFor="let tag of post.tags">{{ tag.text }}</span>
+    </div>
+    <a routerLink="/post/{{ post.postNo }}/edit" class="card-link">Edit</a>
+    <a routerLink="/post/{{ post.postNo }}/confirm-delete" class="card-link">Delete</a>-->
+  </div>
+</div>
