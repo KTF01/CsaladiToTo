@@ -88,6 +88,19 @@ Feladat: Családi TODO
 6. Architechtúra terv:
 	![alt text](http://www.kepfeltoltes.eu/images/2018/10/602szekvencia_terv.png)
 
-		
- 	
+## Felhasználói Dolumentáció
+
+1. Az alkalmazás egy család mindennapi tevékenységét és azon managelését teszi lehetővé a lehető legmodernebb módom, ahol az interneten nyomon lehet követni az adott feladatainak, kiíírhatunk végrehajthatunk eseményeket és mintezt jelezhetjük, nyomon követhetjük.
+
+2. Az alkalmazásban a családtagok a "főoldalon" láthatják a feladatokat, amiket a családban el kell végezni, lehetőség van ezen belül más menüpont segítségével családtagok által kiírt végrehajtásra várt feladatokat is megtekinteni.
+
+3. Mindemellett lehetőséget nyújt keresésre, és a fent említett "tagek" segítségével, különböző szűréseket, áttekintéseket átböngészni. A Kulcs az egyszerűságben rejlik.
+
+4.A futtatáshoz ajánlott hardver-, szoftver konfiguráció Böngészőben futó alkalmazás nincs különösebb hardver igénye. Ajánlott szoftver - Google Chrome, Firefox, Opera, Safari
+
+5.Telepítés lépései: hogyan kerül a Githubról a célgépre a program git clone github link. Telepítés meglévő fileok elhejetése majd konzolban npm -install parancs-al lefut a telepítés. spring-boot:run-el és ng serve -el pedig elindul a program.
+
+## Egy funkció leírása
+
+1. A bejelentkezést tekintve, az alkalmazásunk jobb felső sarkában található bejelentkezés lehetőséggel a megfelelő felületre kerülvén, kitölthetjük a mezőket (felhasználónév,jelszó) ami megfeleő kitöltés esetén beléptet minket, és köszönt ugyanott a jobb felső sarokban. Ellenkező esetben kiíírja a hibánkat, sőt a hibáás mezőt is kielelvén jelzi, mit felejtettünk el/ vagy töltöttünk ki hibásan.
                          
